@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<robot>
+
+  <!-- ros_control plugin -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/agv</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo>
+
+  <gazebo reference="base_footprint">
+    <material>Gazebo/Green</material>
+  </gazebo>
+
+  <gazebo reference="base_link">
+    <material>Gazebo/Red</material>
+  </gazebo>
+
+  <gazebo reference="drive_wheel_A">
+    <mu1 value="1.0"/> 
+    <mu2 value="1.0"/> 
+    <fdir1 value="0 0 0"/>
+    <kp value="10000000.0"/> 
+    <kd value="1.0" />    
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <gazebo reference="turning_wheel_A">
+    <mu1 value="1.0"/> 
+    <mu2 value="1.0"/> 
+    <fdir1 value="0 0 0"/>
+    <kp value="10000000.0"/> 
+    <kd value="1.0" />    
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <gazebo reference="drive_wheel_B">
+    <mu1 value="1.0"/> 
+    <mu2 value="1.0"/> 
+    <fdir1 value="0 0 0"/>
+    <kp value="10000000.0"/>
+    <kd value="1.0" />    
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <gazebo reference="turning_wheel_B">
+    <mu1 value="1.0"/> 
+    <mu2 value="1.0"/> 
+    <fdir1 value="0 0 0"/>
+    <kp value="10000000.0"/> 
+    <kd value="1.0" />    
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <gazebo reference="caster_axis_A">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+  <gazebo reference="caster_axis_B">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+  <gazebo reference="caster_wheel_A">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+  <gazebo reference="caster_wheel_B">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+
+</robot>

@@ -1,0 +1,37 @@
+cmake_minimum_required(VERSION 2.8.3)
+project(agv_diff_bringup)
+
+find_package(catkin REQUIRED COMPONENTS
+  geometry_msgs
+  roscpp
+  rospy
+  sensor_msgs
+  std_msgs
+)
+set(XENOMAI_INCLUDE_DIR /usr/xenomai/include)
+set(ETHERCAT_INCLUDE_DIR /usr/local/include)
+set(ETHERCAT_LIBRARY /usr/local/lib/libethercat.so.1.0.0 /usr/local/etherlab/lib/libethercat_rtdm.so.1  /usr/xenomai/lib/libpthread_rt.so.1.0.0 /usr/xenomai/lib/libnative.so.3 /usr/xenomai/lib/libxenomai.so.0.0.0)
+
+catkin_package(
+  INCLUDE_DIRS include
+  LIBRARIES agv_diff_bringup
+  CATKIN_DEPENDS geometry_msgs roscpp rospy sensor_msgs std_msgs
+  DEPENDS system_lib
+)
+
+include_directories(
+  include
+  ${catkin_INCLUDE_DIRS}
+  ${XENOMAI_INCLUDE_DIR}
+  ${ETHERCAT_INCLUDE_DIR}
+  ${catkin_INCLUDE_DIRS}
+)
+
+add_library(agv_diff_ethercat src/agv_ethercat.c)
+target_link_libraries(agv_diff_ethercat ethercat ${caktin_LIBRARIES} ${ETHERCAT_LIBRARY})
+
+add_library(agv_diff_hw src/agv_diff_hw.cpp)
+target_link_libraries(agv_diff_hw agv_diff_ethercat ${catkin_LIBRARIES})
+
+add_executable(agv_diff_bringup src/agv_diff_bringup.cpp include/agv_diff_bringup/agv_diff_hw.h)
+target_link_libraries(agv_diff_bringup agv_diff_hw ${catkin_LIBRARIES})

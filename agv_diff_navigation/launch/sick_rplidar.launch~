@@ -1,0 +1,23 @@
+<launch>
+  <arg name="host" default="192.168.1.100" />
+  <node name="link_b" pkg="tf" type="static_transform_publisher" args="0.52 0 0.05 0 0 0 base_link laser_link 100"/>
+  <node pkg="lms1xx" name="lms1xx" type="LMS1xx_node">
+    <param name="host" value="$(arg host)" />
+    <param name="min_ang" type="double" value="-2.5"/>
+    <param name="max_ang" type="double" value="2.5"/>
+    <param name="intensity" type="bool" value="True"/>
+    <param name="skip" type="int" value="0"/>
+    <param name="frame_id" type="str" value="laser_link"/>
+    <param name="time_offset" type="double" value="-0.001"/>
+    <param name="publish_datagram" type="bool" value="false"/>
+    <param name="subscribe_datagram" type="bool" value="false"/>
+    <param name="device_number" type="int" value="0"/>
+    <param name="time_increment" type="double" value="0.000061722"/>
+    <param name="range_min" type="double" value="0.05"/>
+    <param name="range_max" type="double" value="20.0"/>
+  </node>
+ 
+
+
+
+</launch>

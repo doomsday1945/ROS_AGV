@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<robot name="agv" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:include filename="$(find agv_diff_description)/urdf/agv_body.urdf.xacro" />
+	<xacro:include filename="$(find agv_diff_description)/urdf/rplidar.xacro" />
+	<xacro:property name="rplidar_offset_x" value="0.46" />
+	<xacro:property name="rplidar_offset_y" value="0" />
+	<xacro:property name="rplidar_offset_z" value="0.15" />
+
+	<!-- rplidar -->
+	<joint name="rplidar_joint" type="fixed">
+		<origin xyz="${rplidar_offset_x} ${rplidar_offset_y} ${rplidar_offset_z}" rpy="0 0 0" />
+		<parent link="base_link"/>
+		<child link="laser_link"/>
+	</joint>
+	<xacro:rplidar prefix="laser"/>
+
+</robot>

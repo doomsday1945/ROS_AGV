@@ -1,0 +1,15 @@
+<?xml version:="1.0"?>
+<launch>
+   <param name="use_sim_time" value="false" />
+
+   <arg name="map" default="floor_map.yaml"/>
+
+   <node name="map_server" pkg="map_server" type="map_server" args="$(find agv_diff_navigation)/maps/$(arg map)"/>
+
+   <include file="$(find agv_diff_navigation)/launch/agv_diff_move_base.launch"/>
+
+   <include file="$(find agv_diff_navigation)/launch/amcl.launch"/>
+
+   <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 /map /odom 100"/>
+
+ </launch>
